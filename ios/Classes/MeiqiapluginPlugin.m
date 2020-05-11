@@ -28,6 +28,9 @@ static NSObject<FlutterPluginRegistrar> *aRegistrar;
   }
 }
 
+
+
+
 - (void)initMeiqiaSdk:(FlutterMethodCall*)call {
     NSString *appKey = call.arguments[@"Appkey"];
     
