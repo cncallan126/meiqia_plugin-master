@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.ewhale.meiqiaplugin">
+
+    <uses-sdk tools:overrideLibrary="org.xutils" />
+
+    <application>
+        <service android:name="com.meiqia.core.MeiQiaService"/>
+    </application>
+
+</manifest>
