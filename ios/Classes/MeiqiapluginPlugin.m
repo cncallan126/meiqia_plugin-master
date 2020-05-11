@@ -21,7 +21,9 @@ static NSObject<FlutterPluginRegistrar> *aRegistrar;
       [self initMeiqiaSdk:call];
   } else if ([@"openChatPage" isEqualToString:call.method]) {
       [self openChatPage];
-  } else {
+  }else if([@"sendTextMessage" isEqualToString:call.method]){
+          [self sendTextMessage];
+     }else {
     result(FlutterMethodNotImplemented);
   }
 }
@@ -46,6 +48,15 @@ static NSObject<FlutterPluginRegistrar> *aRegistrar;
     UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
     vc.modalPresentationStyle = UIModalPresentationFullScreen;
     [chatViewManager pushMQChatViewControllerInViewController:vc];
+}
+
+- (void)sendTextMessage{
+    NSString *link = call.arguments[@"link"];
+    NSString *imgPath = call.arguments[@"imgPath"];
+   MQChatViewManager *chatViewManager = [[MQChatViewManager alloc] init];
+  [chatViewManager setPreSendMessages: @[@link]];
+  UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+  [chatViewManager pushMQChatViewControllerInViewController:vc];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application{
