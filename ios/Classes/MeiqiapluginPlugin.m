@@ -22,7 +22,7 @@ static NSObject<FlutterPluginRegistrar> *aRegistrar;
   } else if ([@"openChatPage" isEqualToString:call.method]) {
       [self openChatPage];
   }else if([@"sendTextMessage" isEqualToString:call.method]){
-          [self sendTextMessage];
+          [self sendTextMessage:call];
      }else {
     result(FlutterMethodNotImplemented);
   }
@@ -53,11 +53,15 @@ static NSObject<FlutterPluginRegistrar> *aRegistrar;
     [chatViewManager pushMQChatViewControllerInViewController:vc];
 }
 
-- (void)sendTextMessage{
+- (void)sendTextMessage:(FlutterMethodCall*)call{
     NSString *link = call.arguments[@"link"];
     NSString *imgPath = call.arguments[@"imgPath"];
-    [self openChatPage];
-    [chatViewManager setPreSendMessages: @[@link]];
+    #pragma mark 预发送消息
+            MQChatViewManager *chatViewManager = [[MQChatViewManager alloc] init];
+           [chatViewManager setPreSendMessages: @[link]];
+            UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+               vc.modalPresentationStyle = UIModalPresentationFullScreen;
+               [chatViewManager pushMQChatViewControllerInViewController:vc];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application{
