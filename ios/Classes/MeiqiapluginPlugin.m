@@ -56,10 +56,8 @@ static NSObject<FlutterPluginRegistrar> *aRegistrar;
 - (void)sendTextMessage{
     NSString *link = call.arguments[@"link"];
     NSString *imgPath = call.arguments[@"imgPath"];
-   MQChatViewManager *chatViewManager = [[MQChatViewManager alloc] init];
-  [chatViewManager setPreSendMessages: @[@link]];
-  //UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
-  //[chatViewManager pushMQChatViewControllerInViewController:vc];
+    [self openChatPage];
+    [chatViewManager setPreSendMessages: @[@link]];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application{
