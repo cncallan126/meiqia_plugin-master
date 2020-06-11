@@ -58,10 +58,13 @@ public class MeiQiaHandler {
     public static void setInfoAndSendTextMessage(MethodCall call,MethodChannel.Result result){
         //设置上线参数，可选
         //MCOnlineConfig onlineConfig = new MCOnlineConfig();
+        String name = call.argument("name");
+        String avatar = call.argument("avatar");
+        String userId = call.argument("userId");
         HashMap<String, String> clientInfo = new HashMap<>();
-        clientInfo.put("name", call.argument("name"));
-        clientInfo.put("avatar", call.argument("avatar"));
-        clientInfo.put("userId", call.argument("userId"));
+        clientInfo.put("name", name);
+        clientInfo.put("avatar", avatar);
+        clientInfo.put("userId", userId);
 
 
         //启动对话界面

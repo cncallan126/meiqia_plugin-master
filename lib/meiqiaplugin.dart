@@ -38,7 +38,7 @@ class Meiqiaplugin {
       "imgPath":imgPath,
       "name":name,
       "avatar":avatar,
-      "id":id
+      "userId":id
     });
   }
 
