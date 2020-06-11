@@ -33,7 +33,9 @@ public class MeiQiaHandler {
         //启动对话界面
 
         MQConfig.registerController(new ControllerImpl(mcontext));
-        Intent intent = new MQIntentBuilder(mcontext).build();
+        Intent intent = new MQIntentBuilder(mcontext)
+
+                .build();
         mcontext.startActivity(intent);
 //        startActivity(intent);
     }
@@ -72,12 +74,35 @@ public class MeiQiaHandler {
         String imgPath = call.argument("imgPath");
         MQConfig.registerController(new ControllerImpl(mcontext));
         Intent intent = new MQIntentBuilder(mcontext)
+                .setCustomizedId(userId)
                 .setClientInfo(clientInfo)
                 .setPreSendTextMessage(link)
                 .setPreSendImageMessage(new File(imgPath))
                 .build();
         mcontext.startActivity(intent);
 //        startActivity(intent);
+    }
+
+    //设置用户id并启动客服界面
+    public static void setUserIdAndOpenMeiQia(MethodCall call,MethodChannel.Result result){
+        //设置上线参数，可选
+        //MCOnlineConfig onlineConfig = new MCOnlineConfig();
+        String name = call.argument("name");
+        String avatar = call.argument("avatar");
+        String userId = call.argument("userId");
+        HashMap<String, String> clientInfo = new HashMap<>();
+        clientInfo.put("name", name);
+        clientInfo.put("avatar", avatar);
+        clientInfo.put("userId", userId);
+
+
+        //启动对话界面
+        MQConfig.registerController(new ControllerImpl(mcontext));
+        Intent intent = new MQIntentBuilder(mcontext)
+                .setCustomizedId(userId)
+                .setClientInfo(clientInfo)
+                .build();
+        mcontext.startActivity(intent);
     }
 
 

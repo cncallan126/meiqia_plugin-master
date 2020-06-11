@@ -71,8 +71,11 @@ public class MeiqiapluginPlugin implements FlutterPlugin, MethodCallHandler {
       System.out.println("==========预发送消息");
       MeiQiaHandler.sendTextMessage(call,result);
     }else if(call.method.equals("setInfoAndSendTextMessage")){
-      System.out.println("==========设置用户信息并启动页面");
+      System.out.println("==========设置用户信息并启动页面--预发送消息");
       MeiQiaHandler.setInfoAndSendTextMessage(call,result);
+    }else if(call.method.equals("setUserIdAndOpenMeiQia")){
+      System.out.println("==========设置用户id并启动页面--没有预发送消息");
+      MeiQiaHandler.setUserIdAndOpenMeiQia(call,result);
     }else {
       result.notImplemented();
     }
@@ -85,6 +88,7 @@ public class MeiqiapluginPlugin implements FlutterPlugin, MethodCallHandler {
     // 替换成自己的key
 //    String meiqiaKey = "b09225108281af94bca144ea90076459";
     String meiqiaKey = call.argument("Appkey");
+    MQConfig.isShowClientAvatar = true;
     MQConfig.init(aContext, meiqiaKey, new OnInitCallback() {
       @Override
       public void onSuccess(String s) {

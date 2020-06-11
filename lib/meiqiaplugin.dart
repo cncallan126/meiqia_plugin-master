@@ -31,24 +31,28 @@ class Meiqiaplugin {
     });
   }
 
-  ///设置用户信息并启动页面
-  static Future setInfoAndSendTextMessage({String link,String imgPath,String name,String avatar,String id})async{
+  ///设置用户信息并启动页面---预发送消息
+  static Future setInfoAndSendTextMessage({String link,String imgPath,String name,String avatar,String userId})async{
     await _channel.invokeMethod("setInfoAndSendTextMessage",{
       "link":link,
       "imgPath":imgPath,
       "name":name,
       "avatar":avatar,
-      "userId":id
+      "userId":userId
     });
   }
 
-//  ///进入初始化
-//  static StreamController _initController = new StreamController.broadcast();
-//  static  Stream get responseFromInit => _initController.stream;
-//
-//  ///打开聊天界面
-//  static StreamController _openChatPageController = new StreamController.broadcast();
-//  static  Stream get responseFromOpenChatPage => _openChatPageController.stream;
+  ///设置用户id并启动页面---没有预发送消息
+  static Future setUserIdAndOpenMeiQia({String link,String imgPath,String name,String avatar,String userId})async{
+    await _channel.invokeMethod("setUserIdAndOpenMeiQia",{
+      "link":link,
+      "imgPath":imgPath,
+      "name":name,
+      "avatar":avatar,
+      "userId":userId
+    });
+  }
+
 
 
   static Future<dynamic> _handler(MethodCall methodCall) {
