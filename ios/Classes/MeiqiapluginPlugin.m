@@ -78,7 +78,7 @@ static NSObject<FlutterPluginRegistrar> *aRegistrar;
     #pragma mark 预发送消息
             MQChatViewManager *chatViewManager = [[MQChatViewManager alloc] init];
            [chatViewManager setPreSendMessages: @[link]];
-           [chatViewManager setClientInfo:@{@"name":@[name],@"avatar":@[avatar]],@"userId":@[userId]} override:YES];
+           [chatViewManager setClientInfo:@{@"name":@[name],@"avatar":@[avatar],@"userId":@[userId]} override:YES];
             UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
                vc.modalPresentationStyle = UIModalPresentationFullScreen;
                [chatViewManager pushMQChatViewControllerInViewController:vc];
@@ -91,7 +91,7 @@ static NSObject<FlutterPluginRegistrar> *aRegistrar;
     NSString *userId = call.arguments[@"userId"];
     MQChatViewManager *chatViewManager = [[MQChatViewManager alloc] init];
     [chatViewManager setoutgoingDefaultAvatarImage:[UIImage imageNamed:@"meiqia-icon"]];
-    [chatViewManager setClientInfo:@{@"name":@[name],@"avatar":@[avatar]],@"userId":@[userId]} override:YES];
+    [chatViewManager setClientInfo:@{@"name":@[name],@"avatar":@[avatar],@"userId":@[userId]} override:YES];
     UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
     vc.modalPresentationStyle = UIModalPresentationFullScreen;
     [chatViewManager pushMQChatViewControllerInViewController:vc];
