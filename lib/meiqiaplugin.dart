@@ -31,6 +31,17 @@ class Meiqiaplugin {
     });
   }
 
+  ///设置用户信息并启动页面
+  static Future setInfoAndSendTextMessage({String link,String imgPath,String name,String avatar,String id})async{
+    await _channel.invokeMethod("setInfoAndSendTextMessage",{
+      "link":link,
+      "imgPath":imgPath,
+      "name":name,
+      "avatar":avatar,
+      "id":id
+    });
+  }
+
 //  ///进入初始化
 //  static StreamController _initController = new StreamController.broadcast();
 //  static  Stream get responseFromInit => _initController.stream;

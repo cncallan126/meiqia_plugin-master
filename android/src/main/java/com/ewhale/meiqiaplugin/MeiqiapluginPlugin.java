@@ -70,6 +70,9 @@ public class MeiqiapluginPlugin implements FlutterPlugin, MethodCallHandler {
     } else if(call.method.equals("sendTextMessage")){
       System.out.println("==========预发送消息");
       MeiQiaHandler.sendTextMessage(call,result);
+    }else if(call.method.equals("setInfoAndSendTextMessage")){
+      System.out.println("==========设置用户信息并启动页面");
+      MeiQiaHandler.setInfoAndSendTextMessage(call,result);
     }else {
       result.notImplemented();
     }
