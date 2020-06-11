@@ -10,6 +10,7 @@ import com.meiqia.meiqiasdk.util.MQIntentBuilder;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.AbstractMap;
 
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
