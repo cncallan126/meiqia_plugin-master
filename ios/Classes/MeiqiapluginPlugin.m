@@ -18,13 +18,17 @@ static NSObject<FlutterPluginRegistrar> *aRegistrar;
   if ([@"getPlatformVersion" isEqualToString:call.method]) {
     result([@"iOS " stringByAppendingString:[[UIDevice currentDevice] systemVersion]]);
   } else if ([@"initMeiQia" isEqualToString:call.method]) {
-      [self initMeiqiaSdk:call];
-  } else if ([@"openChatPage" isEqualToString:call.method]) {
-      [self openChatPage];
+            [self initMeiqiaSdk:call];
+  }else if ([@"openChatPage" isEqualToString:call.method]) {
+            [self openChatPage];
   }else if([@"sendTextMessage" isEqualToString:call.method]){
-          [self sendTextMessage:call];
-     }else {
-    result(FlutterMethodNotImplemented);
+            [self sendTextMessage:call];
+  }else if([@"setInfoAndSendTextMessage" isEqualToString:call.method]){
+            [self setInfoAndSendTextMessage:call];
+  }else if([@"setUserIdAndOpenMeiQia" isEqualToString:call.method]){
+            [self setUserIdAndOpenMeiQia:call];
+  }else {
+            result(FlutterMethodNotImplemented);
   }
 }
 
@@ -62,6 +66,35 @@ static NSObject<FlutterPluginRegistrar> *aRegistrar;
             UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
                vc.modalPresentationStyle = UIModalPresentationFullScreen;
                [chatViewManager pushMQChatViewControllerInViewController:vc];
+}
+
+- (void)setInfoAndSendTextMessage:(FlutterMethodCall*)call{
+    NSString *name = call.arguments[@"name"];
+    NSString *avatar = call.arguments[@"avatar"];
+    NSString *userId = call.arguments[@"userId"];
+    NSString *link = call.arguments[@"link"];
+    NSString *imgPath = call.arguments[@"imgPath"];
+
+    #pragma mark 预发送消息
+            MQChatViewManager *chatViewManager = [[MQChatViewManager alloc] init];
+           [chatViewManager setPreSendMessages: @[link]];
+           [chatViewManager setClientInfo:@{@"name":@[name],@"avatar":@[avatar]],@"userId":@[userId]} override:YES];
+            UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+               vc.modalPresentationStyle = UIModalPresentationFullScreen;
+               [chatViewManager pushMQChatViewControllerInViewController:vc];
+}
+
+
+- (void)setUserIdAndOpenMeiQia:(FlutterMethodCall*)call{
+    NSString *name = call.arguments[@"name"];
+    NSString *avatar = call.arguments[@"avatar"];
+    NSString *userId = call.arguments[@"userId"];
+    MQChatViewManager *chatViewManager = [[MQChatViewManager alloc] init];
+    [chatViewManager setoutgoingDefaultAvatarImage:[UIImage imageNamed:@"meiqia-icon"]];
+    [chatViewManager setClientInfo:@{@"name":@[name],@"avatar":@[avatar]],@"userId":@[userId]} override:YES];
+    UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    vc.modalPresentationStyle = UIModalPresentationFullScreen;
+    [chatViewManager pushMQChatViewControllerInViewController:vc];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application{
