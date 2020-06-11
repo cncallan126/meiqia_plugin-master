@@ -43,10 +43,8 @@ class Meiqiaplugin {
   }
 
   ///设置用户id并启动页面---没有预发送消息
-  static Future setUserIdAndOpenMeiQia({String link,String imgPath,String name,String avatar,String userId})async{
+  static Future setUserIdAndOpenMeiQia({String name,String avatar,String userId})async{
     await _channel.invokeMethod("setUserIdAndOpenMeiQia",{
-      "link":link,
-      "imgPath":imgPath,
       "name":name,
       "avatar":avatar,
       "userId":userId
