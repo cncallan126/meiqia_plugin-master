@@ -69,16 +69,25 @@ static NSObject<FlutterPluginRegistrar> *aRegistrar;
 }
 
 - (void)setInfoAndSendTextMessage:(FlutterMethodCall*)call{
-    NSString *name = call.arguments[@"name"];
-    NSString *avatar = call.arguments[@"avatar"];
-    NSString *userId = call.arguments[@"userId"];
-    NSString *link = call.arguments[@"link"];
-    NSString *imgPath = call.arguments[@"imgPath"];
+        NSString *name = call.arguments[@"name"];
+        NSString *avatar = call.arguments[@"avatar"];
+        NSString *userId = call.arguments[@"userId"];
+        NSString *link = call.arguments[@"link"];
+        NSString *imgPath = call.arguments[@"imgPath"];
+
+        //创建自定义信息
+        NSDictionary* clientCustomizedAttrs = @{
+        @"name" : @[name],
+        @"avatar" : @[avatar],
+        @"userId" : @[userId],
+        };
 
     #pragma mark 预发送消息
             MQChatViewManager *chatViewManager = [[MQChatViewManager alloc] init];
+            //设置用户信息
+            [chatViewManager setClientInfo:clientCustomizedAttrs];
+            //预发送消息
            [chatViewManager setPreSendMessages: @[link]];
-           [chatViewManager setClientInfo:@{@"name":@[name],@"avatar":@[avatar],@"userId":@[userId]} override:YES];
             UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
                vc.modalPresentationStyle = UIModalPresentationFullScreen;
                [chatViewManager pushMQChatViewControllerInViewController:vc];
@@ -86,15 +95,22 @@ static NSObject<FlutterPluginRegistrar> *aRegistrar;
 
 
 - (void)setUserIdAndOpenMeiQia:(FlutterMethodCall*)call{
-    NSString *name = call.arguments[@"name"];
-    NSString *avatar = call.arguments[@"avatar"];
-    NSString *userId = call.arguments[@"userId"];
-    MQChatViewManager *chatViewManager = [[MQChatViewManager alloc] init];
-    [chatViewManager setoutgoingDefaultAvatarImage:[UIImage imageNamed:@"meiqia-icon"]];
-    [chatViewManager setClientInfo:@{@"name":@[name],@"avatar":@[avatar],@"userId":@[userId]} override:YES];
-    UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
-    vc.modalPresentationStyle = UIModalPresentationFullScreen;
-    [chatViewManager pushMQChatViewControllerInViewController:vc];
+        NSString *name = call.arguments[@"name"];
+        NSString *avatar = call.arguments[@"avatar"];
+        NSString *userId = call.arguments[@"userId"];
+        //创建自定义信息
+        NSDictionary* clientCustomizedAttrs = @{
+        @"name" : @[name],
+        @"avatar" : @[avatar],
+        @"userId" : @[userId],
+        };
+
+        MQChatViewManager *chatViewManager = [[MQChatViewManager alloc] init];
+        //设置用户信息
+        [chatViewManager setClientInfo:clientCustomizedAttrs];
+        UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+        vc.modalPresentationStyle = UIModalPresentationFullScreen;
+        [chatViewManager pushMQChatViewControllerInViewController:vc];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application{
