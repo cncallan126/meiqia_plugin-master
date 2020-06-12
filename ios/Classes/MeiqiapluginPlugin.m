@@ -72,6 +72,7 @@ static NSObject<FlutterPluginRegistrar> *aRegistrar;
         NSString *name = call.arguments[@"name"];
         NSString *avatar = call.arguments[@"avatar"];
         NSString *userId = call.arguments[@"userId"];
+        NSString *tel = call.arguments[@"tel"];
         NSString *customId = call.arguments[@"userId"];
         NSString *link = call.arguments[@"link"];
         NSString *imgPath = call.arguments[@"imgPath"];
@@ -80,7 +81,8 @@ static NSObject<FlutterPluginRegistrar> *aRegistrar;
         NSDictionary* clientCustomizedAttrs = @{
         @"name" : name,
         @"avatar" : avatar,
-        @"userId" : userId
+        @"userId" : userId,
+        @"tel" : tel
         };
 
     #pragma mark 预发送消息
@@ -100,12 +102,14 @@ static NSObject<FlutterPluginRegistrar> *aRegistrar;
         NSString *name = call.arguments[@"name"];
         NSString *avatar = call.arguments[@"avatar"];
         NSString *userId = call.arguments[@"userId"];
+        NSString *tel = call.arguments[@"tel"];
         NSString *customId = call.arguments[@"userId"];
         //创建自定义信息
         NSDictionary* clientCustomizedAttrs = @{
         @"name" : name,
         @"avatar" : avatar,
-        @"userId" : userId
+        @"userId" : userId,
+        @"tel" : tel
         };
 
         MQChatViewManager *chatViewManager = [[MQChatViewManager alloc] init];

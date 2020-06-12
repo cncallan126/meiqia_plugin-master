@@ -63,10 +63,12 @@ public class MeiQiaHandler {
         String name = call.argument("name");
         String avatar = call.argument("avatar");
         String userId = call.argument("userId");
+        String tel = call.argument("tel");
         HashMap<String, String> clientInfo = new HashMap<>();
         clientInfo.put("name", name);
         clientInfo.put("avatar", avatar);
         clientInfo.put("userId", userId);
+        clientInfo.put("tel", tel);
 
 
         //启动对话界面
@@ -90,10 +92,12 @@ public class MeiQiaHandler {
         String name = call.argument("name");
         String avatar = call.argument("avatar");
         String userId = call.argument("userId");
+        String tel = call.argument("tel");
         HashMap<String, String> clientInfo = new HashMap<>();
         clientInfo.put("name", name);
         clientInfo.put("avatar", avatar);
         clientInfo.put("userId", userId);
+        clientInfo.put("tel", tel);
 
 
         //启动对话界面

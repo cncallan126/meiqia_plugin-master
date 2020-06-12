@@ -32,22 +32,24 @@ class Meiqiaplugin {
   }
 
   ///设置用户信息并启动页面---预发送消息
-  static Future setInfoAndSendTextMessage({String link,String imgPath,String name,String avatar,String userId})async{
+  static Future setInfoAndSendTextMessage({String link,String imgPath,String name,String avatar,String userId,String tel})async{
     await _channel.invokeMethod("setInfoAndSendTextMessage",{
       "link":link,
       "imgPath":imgPath,
       "name":name,
       "avatar":avatar,
-      "userId":userId
+      "userId":userId,
+      "tel":tel
     });
   }
 
   ///设置用户id并启动页面---没有预发送消息
-  static Future setUserIdAndOpenMeiQia({String name,String avatar,String userId})async{
+  static Future setUserIdAndOpenMeiQia({String name,String avatar,String userId,String tel})async{
     await _channel.invokeMethod("setUserIdAndOpenMeiQia",{
       "name":name,
       "avatar":avatar,
-      "userId":userId
+      "userId":userId,
+      "tel":tel
     });
   }
 
